@@ -23,13 +23,11 @@ void Delay_ms(unsigned int t){
 
 
 int main(){
-
 	Config_Led();
-	
 	while(1){
 		GPIO_SetBits(GPIOA, GPIO_Pin_1 | GPIO_Pin_2);
-		Delay_ms(1000);
+		Delay_ms(500);
 		GPIO_ResetBits(GPIOA, GPIO_Pin_1 | GPIO_Pin_2);
-		Delay_ms(1000);
+		Delay_ms(500);
 	}
 }

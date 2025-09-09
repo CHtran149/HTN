@@ -26,7 +26,9 @@ void Config_GPIO(){
 int main(){
 	Config_GPIO();
 	while(1){
-		uint8_t status = GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_2);
-		GPIO_WriteBit(GPIOA, GPIO_Pin_1, status);
+		uint8_t status = GPIO_ReadOutputDataBit(GPIOA, GPIO_Pin_1);
+		if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_2) == 0){
+			GPIO_WriteBit(GPIOA, GPIO_Pin_1, !status);
+		}
 	}
 }
