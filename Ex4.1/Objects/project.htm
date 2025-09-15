@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Sep 08 22:44:34 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Sep 09 20:33:16 2025
 <BR><P>
 <H3>Maximum Stack Usage =         32 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-__rt_entry_main &rArr; main &rArr; Delay_ms &rArr; Delay_1ms &rArr; Config_Timer
+__rt_entry_main &rArr; main &rArr; Config_Led &rArr; GPIO_Init
 <P>
 <H3>
 Functions with no stack information
@@ -198,7 +198,7 @@ Global Symbols
 
 <P><STRONG><a name="[42]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; Delay_ms &rArr; Delay_1ms &rArr; Config_Timer
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; Config_Led &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -481,22 +481,21 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TimeBaseInit
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_1ms
+<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[52]"></a>Delay_1ms</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, main.o(i.Delay_1ms))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Delay_1ms &rArr; Config_Timer
+<P><STRONG><a name="[52]"></a>Delay_1ms</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, main.o(i.Delay_1ms))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Delay_1ms
 </UL>
 <BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetCounter
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetCounter
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Config_Timer
 </UL>
 <BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
 </UL>
 
 <P><STRONG><a name="[56]"></a>Delay_ms</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, main.o(i.Delay_ms))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Delay_ms &rArr; Delay_1ms &rArr; Config_Timer
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Delay_ms &rArr; Delay_1ms
 </UL>
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_1ms
 </UL>
@@ -544,11 +543,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Config_Timer
 </UL>
 
-<P><STRONG><a name="[43]"></a>main</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = main &rArr; Delay_ms &rArr; Delay_1ms &rArr; Config_Timer
+<P><STRONG><a name="[43]"></a>main</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = main &rArr; Config_Led &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Config_Timer
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Config_Led
 </UL>
 <BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main

@@ -19,16 +19,15 @@ void Config_Timer(){
 	timer.TIM_ClockDivision			= 0;
 	timer.TIM_CounterMode				= TIM_CounterMode_Up;
 	timer.TIM_Period						= 65535;
-	timer.TIM_Prescaler					= 2 - 1;
+	timer.TIM_Prescaler					= 72 - 1;
 	timer.TIM_RepetitionCounter		= 0;
 	TIM_TimeBaseInit(TIM2, &timer);
 }
 
 void Delay_1ms(){
-	Config_Timer();
 	TIM_Cmd(TIM2, ENABLE);
 	TIM_SetCounter(TIM2, 0);
-	while(TIM_GetCounter(TIM2) < 36000);
+	while(TIM_GetCounter(TIM2) < 1000);
 	TIM_Cmd(TIM2, DISABLE);
 }
 
@@ -40,6 +39,7 @@ void Delay_ms(unsigned int t){
 
 int main(){
 	Config_Led();
+	Config_Timer();
 	while(1){
 		GPIO_WriteBit(GPIOA, GPIO_Pin_0, 0);
 		Delay_ms(500);

@@ -74,7 +74,6 @@ int main(){
 	Config_Uart();
 	while(1){
 		uart_SendStr("Hello from STM32!\n");
-		printf("Hello CT\n");
 		Delay_ms(500);
 		
 	}
